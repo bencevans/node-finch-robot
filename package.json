@@ -1,0 +1,40 @@
+{
+  "name": "finch",
+  "version": "0.0.0",
+  "description": "Finch Robot Controller",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "dependencies": {
+    "node-hid": "^0.3.1",
+    "underscore": "^1.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/bencevans/node-sonos.git"
+  },
+  "keywords": [
+    "finch",
+    "usb",
+    "robot",
+    "light",
+    "led",
+    "motor",
+    "buzzer",
+    "university",
+    "computer",
+    "science",
+    "learning"
+  ],
+  "author": "Ben Evans <ben@bensbit.co.uk> (http://bensbit.co.uk)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bencevans/node-sonos/issues"
+  },
+  "homepage": "https://github.com/bencevans/node-sonos"
+}

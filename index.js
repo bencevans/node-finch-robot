@@ -7,6 +7,24 @@ var HID = require('node-hid');
 var _   = require('underscore');
 
 /**
+ * Constants
+ */
+
+const DEVICE_VENDOR = 9044;
+const DEVICE_PRODUCT = 4369;
+
+const BYTE_LED = "O".charCodeAt(0);
+const BYTE_MOTOR = "M".charCodeAt(0);
+const BYTE_BUZZER = "B".charCodeAt(0);
+const BYTE_TEMPERATURE = "T".charCodeAt(0);
+const BYTE_LIGHT = "L".charCodeAt(0);
+const BYTE_ACCELEROMETER = "A".charCodeAt(0);
+const BYTE_OBSTACLE = "I".charCodeAt(0);
+const BYTE_STOP = "X".charCodeAt(0);
+const BYTE_RESET = "R".charCodeAt(0);
+const BYTE_CONNECT_TEST = "z".charCodeAt(0);
+
+/**
  * Finds a Finch connected to USB
  * @return {Device}   If undefined, no Finch has been found
  */
@@ -14,8 +32,8 @@ function findFinch() {
 
   var devices = HID.devices();
   var device =_.find(devices, {
-    vendorId: 9044,
-    productId: 4369
+    vendorId: DEVICE_VENDOR,
+    productId: DEVICE_PRODUCT
   });
 
   if(!device) {
@@ -28,6 +46,9 @@ function findFinch() {
     throw new Error('Connection Error: ' + e);
   }
 
+  device.on('data', function(d) {
+    console.log('data' + d)
+  });
   return device;
 }
 
@@ -52,7 +73,7 @@ Finch.prototype.led = function(r, g, b) {
   if((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255)) {
     throw new Error('Invalid led args');
   }
-  return this.device.write([0x4f, r, g, b]);
+  return this.device.write([BYTE_LED, r, g, b]);
 };
 
 /**
@@ -70,7 +91,8 @@ Finch.prototype.move = function(leftDirection, leftSpeed, rightDirection, rightS
   if((leftSpeed < 0 || leftSpeed > 255) || rightSpeed < 0 || rightSpeed > 255) {
     throw new Error('Invalid move args');
   }
-  return this.device.write([0x77, leftDirection, leftSpeed, rightDirection, rightSpeed]);
+  console.log('Writing: ', [BYTE_MOTOR, leftDirection, leftSpeed, rightDirection, rightSpeed])
+  return this.device.write([BYTE_MOTOR, leftDirection, leftSpeed, rightDirection, rightSpeed]);
 };
 
 // Finch.prototype.buzzer = function(r, g, b) {
@@ -86,7 +108,7 @@ Finch.prototype.move = function(leftDirection, leftSpeed, rightDirection, rightS
  * @return {Boolean}      Successfully written to stream
  */
 Finch.prototype.temperature = function(cb) {
-  this.device.write([0x84]);
+  this.device.write([BYTE_TEMPERATURE]);
   this.device.read(function(buf) {
     // TODO: Parse buf
     // TODO: Convert to Celcius
@@ -95,7 +117,7 @@ Finch.prototype.temperature = function(cb) {
 };
 
 Finch.prototype.light = function(cb) {
-  return this.device.write([0x76]);
+  return this.device.write([BYTE_LIGHT]);
   this.device.read(function(err, buf) {
     // TODO: Parse buf
     cb(err, buf);
@@ -103,7 +125,7 @@ Finch.prototype.light = function(cb) {
 };
 
 Finch.prototype.accelerometer = function(cb) {
-  return this.device.write([0x65]);
+  return this.device.write([BYTE_ACCELEROMETER]);
   this.device.read(function(err, buf) {
     // TODO: Parse buf
     cb(err, buf);
@@ -111,7 +133,7 @@ Finch.prototype.accelerometer = function(cb) {
 };
 
 Finch.prototype.obstacles = function(cb) {
-  return this.device.write([0x73]);
+  return this.device.write([BYTE_OBSTACLE]);
   this.device.read(function(err, buf) {
     // TODO: Parse buf
     cb(err, buf);

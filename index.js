@@ -10,8 +10,8 @@ var _   = require('underscore');
  * Constants
  */
 
-const DEVICE_VENDOR = 9044;
-const DEVICE_PRODUCT = 4369;
+const DEVICE_VENDOR = 0x2354;
+const DEVICE_PRODUCT = 0x1111;
 
 const BYTE_LED = "O".charCodeAt(0);
 const BYTE_MOTOR = "M".charCodeAt(0);
@@ -47,8 +47,13 @@ function findFinch() {
   }
 
   device.on('data', function(d) {
-    console.log('data' + d)
+    console.log('data:', d);
+  })
+
+  process.on('exit', function() {
+    device.close();
   });
+
   return device;
 }
 
@@ -63,6 +68,28 @@ var Finch = function() {
 };
 
 /**
+ * Pad and send a Finch command
+ * @param  {Array} bufArray integer or hex values
+ * @return {Boolean}          correctly written
+ */
+Finch.prototype._send = function(bufArray) {
+  // Pad array (should be 9 bytes)
+  if(bufArray.length < 9) {
+    for (var i = bufArray.length; i < 9; i++) {
+      bufArray.push(0);
+    }
+  }
+
+  // Send buffer
+  return this.device.write(bufArray);
+};
+
+
+/**
+ * Complete Functionality
+ */
+
+/**
  * Set Finch's LED Colour
  * @param  {Number} r [0-255]
  * @param  {Number} g [0-255]
@@ -73,7 +100,7 @@ Finch.prototype.led = function(r, g, b) {
   if((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255)) {
     throw new Error('Invalid led args');
   }
-  return this.device.write([BYTE_LED, r, g, b]);
+  return this._send([BYTE_LED, r, g, b]);
 };
 
 /**
@@ -95,6 +122,26 @@ Finch.prototype.move = function(leftDirection, leftSpeed, rightDirection, rightS
   return this.device.write([BYTE_MOTOR, leftDirection, leftSpeed, rightDirection, rightSpeed]);
 };
 
+/**
+ * Make Finch Cycle Colours
+ */
+Finch.prototype.setIdleMode = function() {
+  return this._send([BYTE_RESET]);
+};
+
+/**
+ * Turns off Motor and LED
+ * @return {[type]} [description]
+ */
+Finch.prototype.turnOffMotorAndLEDs = function() {
+  return this._send([BYTE_STOP]);
+};
+
+
+/**
+ * Incomplete Functionality
+ */
+
 // Finch.prototype.buzzer = function(r, g, b) {
 //   if((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255)) {
 //     throw new Error('Invalid buzzer args');
@@ -108,12 +155,10 @@ Finch.prototype.move = function(leftDirection, leftSpeed, rightDirection, rightS
  * @return {Boolean}      Successfully written to stream
  */
 Finch.prototype.temperature = function(cb) {
-  this.device.write([BYTE_TEMPERATURE]);
-  this.device.read(function(buf) {
-    // TODO: Parse buf
-    // TODO: Convert to Celcius
-    cb(err, buf);
+  this.device.once('data', function(buf) {
+    cb(null, (buf[0]-127)/2.4 + 25);
   });
+  this._send([BYTE_TEMPERATURE]);
 };
 
 Finch.prototype.light = function(cb) {
@@ -139,5 +184,7 @@ Finch.prototype.obstacles = function(cb) {
     cb(err, buf);
   });
 };
+
+
 
 module.exports = Finch;

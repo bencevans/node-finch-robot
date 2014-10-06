@@ -8,8 +8,10 @@ A library for controlling [Finch Robots](http://www.finchrobot.com/) with Node.J
 
 node-finch uses the [node-hid] library to communicate with the USB device. node-hid requires system level dependencies in order to control the USB device. On Linux ... on Mac ... on Windows ... Now require the module and initialise an instance.
 
-     var finch = require('finch');
-     var device = finch();
+```js
+var finch = require('finch');
+var device = finch();
+```
 
 If there's an issue finding or connecting to the device an error will be thrown by the second line.
 
@@ -17,14 +19,18 @@ After you have a device successfully initialised you can issue the Finch command
 
 ### LEDs
 
-    device.led(r, g, b)
+```js
+device.led(r, g, b)
+```
 
 * r, g, b = [0-255] - Red, Green, Blue
 
 ### Moving
 
-    device.move(leftDirection, leftSpeed, rightDirection, rightSpeed)
-    device.move(leftSpeed, rightSpeed) // Direction assumed forward
+```js
+device.move(leftDirection, leftSpeed, rightDirection, rightSpeed)
+device.move(leftSpeed, rightSpeed) // Direction assumed forward
+```
 
 * leftDirection/rightDirection = [0|1] - 0 is forward, 1 is backwards
 * leftSpeed/rightSpeed = [0-255] - 0 is stopped, 255 is fast
@@ -35,23 +41,33 @@ TODO
 
 ### Temperature
 
-    device.temperature(callback)
+```js
+device.temperature(callback)
+```
 
 ### Light
 
-    device.light(callback)
+```js
+device.light(callback)
+```
 
 ### Accelerometer
 
-    device.accelerometer(callback)
+```js
+device.accelerometer(callback)
+```
 
 ### Stop
 
-    device.off()
+```js
+device.off()
+```
 
 ### Reset
 
-    device.reset()
+```
+device.reset()
+```
 
 ## Development Resources
 

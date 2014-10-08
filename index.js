@@ -13,16 +13,16 @@ var _   = require('underscore');
 const DEVICE_VENDOR = 0x2354;
 const DEVICE_PRODUCT = 0x1111;
 
-const BYTE_LED = "O".charCodeAt(0);
-const BYTE_MOTOR = "M".charCodeAt(0);
-const BYTE_BUZZER = "B".charCodeAt(0);
-const BYTE_TEMPERATURE = "T".charCodeAt(0);
-const BYTE_LIGHT = "L".charCodeAt(0);
-const BYTE_ACCELEROMETER = "A".charCodeAt(0);
-const BYTE_OBSTACLE = "I".charCodeAt(0);
-const BYTE_STOP = "X".charCodeAt(0);
-const BYTE_RESET = "R".charCodeAt(0);
-const BYTE_CONNECT_TEST = "z".charCodeAt(0);
+const BYTE_LED = 'O'.charCodeAt(0);
+const BYTE_MOTOR = 'M'.charCodeAt(0);
+const BYTE_BUZZER = 'B'.charCodeAt(0);
+const BYTE_TEMPERATURE = 'T'.charCodeAt(0);
+const BYTE_LIGHT = 'L'.charCodeAt(0);
+const BYTE_ACCELEROMETER = 'A'.charCodeAt(0);
+const BYTE_OBSTACLE = 'I'.charCodeAt(0);
+const BYTE_STOP = 'X'.charCodeAt(0);
+const BYTE_RESET = 'R'.charCodeAt(0);
+const BYTE_CONNECT_TEST = 'z'.charCodeAt(0);
 
 /**
  * Finds a Finch connected to USB
@@ -48,7 +48,7 @@ function findFinch() {
 
   device.on('data', function(d) {
     console.log('data:', d);
-  })
+  });
 
   process.on('exit', function() {
     device.close();
@@ -118,7 +118,7 @@ Finch.prototype.move = function(leftDirection, leftSpeed, rightDirection, rightS
   if((leftSpeed < 0 || leftSpeed > 255) || rightSpeed < 0 || rightSpeed > 255) {
     throw new Error('Invalid move args');
   }
-  console.log('Writing: ', [BYTE_MOTOR, leftDirection, leftSpeed, rightDirection, rightSpeed])
+  console.log('Writing: ', [BYTE_MOTOR, leftDirection, leftSpeed, rightDirection, rightSpeed]);
   return this.device.write([BYTE_MOTOR, leftDirection, leftSpeed, rightDirection, rightSpeed]);
 };
 
@@ -162,7 +162,7 @@ Finch.prototype.temperature = function(cb) {
 };
 
 Finch.prototype.light = function(cb) {
-  return this.device.write([BYTE_LIGHT]);
+  this.device.write([BYTE_LIGHT]);
   this.device.read(function(err, buf) {
     // TODO: Parse buf
     cb(err, buf);
@@ -170,7 +170,7 @@ Finch.prototype.light = function(cb) {
 };
 
 Finch.prototype.accelerometer = function(cb) {
-  return this.device.write([BYTE_ACCELEROMETER]);
+  this.device.write([BYTE_ACCELEROMETER]);
   this.device.read(function(err, buf) {
     // TODO: Parse buf
     cb(err, buf);
@@ -178,7 +178,7 @@ Finch.prototype.accelerometer = function(cb) {
 };
 
 Finch.prototype.obstacles = function(cb) {
-  return this.device.write([BYTE_OBSTACLE]);
+  this.device.write([BYTE_OBSTACLE]);
   this.device.read(function(err, buf) {
     // TODO: Parse buf
     cb(err, buf);

@@ -35,6 +35,26 @@ device.move(leftSpeed, rightSpeed) // Direction assumed forward
 * leftDirection/rightDirection = [0|1] - 0 is forward, 1 is backwards
 * leftSpeed/rightSpeed = [0-255] - 0 is stopped, 255 is fast
 
+
+### Turn off Motors and LEDs
+
+```js
+device.turnOffMotorAndLEDs()
+```
+
+### Enter Idle Mode
+
+This will make the Finch's LED colour cycle.
+
+```
+device.setIdleMode()
+```
+
+
+## TODO
+
+**These commands are either not implemented or not working quite yet.**
+
 ### Buzzer
 
 TODO
@@ -55,18 +75,6 @@ device.light(callback)
 
 ```js
 device.accelerometer(callback)
-```
-
-### Stop
-
-```js
-device.off()
-```
-
-### Reset
-
-```
-device.reset()
 ```
 
 ## Development Resources

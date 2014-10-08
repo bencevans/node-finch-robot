@@ -6,7 +6,16 @@ A library for controlling [Finch Robots](http://www.finchrobot.com/) with Node.J
 
 ## Usage
 
-node-finch uses the [node-hid] library to communicate with the USB device. node-hid requires system level dependencies in order to control the USB device. On Linux ... on Mac ... on Windows ... Now require the module and initialise an instance.
+node-finch uses the [node-hid](https://github.com/node-hid/node-hid) library to communicate with the USB device. node-hid requires system level dependencies in order to control the USB device. On Linux you'll need `libudev-dev` or for Ubuntu versions missing libusb.h, you'll need `libusb-1.0-0-dev`. Now require the module and initialise an instance.
+
+
+Ubuntu Users: `sudo apt-get install -y libusb-1.0-0-dev`
+
+Mac OS (I use 10.6.8) or Linux (kernel 2.6+) or Windows XP+
+node.js v0.8
+libudev-dev (Linux only)
+libusb-1.0-0-dev (Ubuntu versions missing libusb.h only)
+git
 
 ```js
 var finch = require('finch');

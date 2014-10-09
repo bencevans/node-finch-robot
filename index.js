@@ -131,7 +131,7 @@ Finch.prototype.setIdleMode = function() {
 
 /**
  * Turns off Motor and LED
- * @return {[type]} [description]
+ * @return {Boolean} Command sent
  */
 Finch.prototype.turnOffMotorAndLEDs = function() {
   return this._send([BYTE_STOP]);

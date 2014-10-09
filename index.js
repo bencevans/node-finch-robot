@@ -187,6 +187,10 @@ Finch.prototype.obstacles = function(cb) {
   });
 };
 
+Finch.prototype._connectionTest = function() {
+  this._send([BYTE_CONNECT_TEST]);
+};
+
 
 
 module.exports = Finch;

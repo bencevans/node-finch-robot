@@ -62,7 +62,7 @@ function findFinch() {
  * Finch
  */
 var Finch = function() {
-  if(this instanceof Finch === false) return new Finch();
+  if(this instanceof Finch === false) { return new Finch(); }
   this.device = findFinch();
   return this;
 };
@@ -118,8 +118,7 @@ Finch.prototype.move = function(leftDirection, leftSpeed, rightDirection, rightS
   if((leftSpeed < 0 || leftSpeed > 255) || rightSpeed < 0 || rightSpeed > 255) {
     throw new Error('Invalid move args');
   }
-  console.log('Writing: ', [BYTE_MOTOR, leftDirection, leftSpeed, rightDirection, rightSpeed]);
-  return this.device.write([BYTE_MOTOR, leftDirection, leftSpeed, rightDirection, rightSpeed]);
+  return this.device._send([BYTE_MOTOR, leftDirection, leftSpeed, rightDirection, rightSpeed]);
 };
 
 /**
@@ -142,12 +141,15 @@ Finch.prototype.turnOffMotorAndLEDs = function() {
  * Incomplete Functionality
  */
 
-// Finch.prototype.buzzer = function(r, g, b) {
-//   if((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255)) {
-//     throw new Error('Invalid buzzer args');
-//   }
-//   this.device.write([0x4f, r, g, b]);
-// };
+/**
+ * Turn the buzzer on
+ * @param  {Number} msec Miliseconds to run
+ * @param  {Number} freq Buzz Frequency
+ * @return {Boolean} successful write
+ */
+Finch.prototype.buzzer = function(msec, freq) {
+  return this._send(BYTE_BUZZER, msec >> 8, msec, freq >> 8, freq);
+};
 
 /**
  * Check Finch's Temperature

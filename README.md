@@ -1,5 +1,7 @@
 # node-finch
 
+![](http://f.cl.ly/items/0708452q3i0C3t2n381T/f_sm.jpg)
+
 A library for controlling [Finch Robots](http://www.finchrobot.com/) with Node.JS.
 
 **This library is still in development and not considered stable.**

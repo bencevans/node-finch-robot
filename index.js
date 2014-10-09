@@ -10,19 +10,19 @@ var _   = require('underscore');
  * Constants
  */
 
-const DEVICE_VENDOR = 0x2354;
-const DEVICE_PRODUCT = 0x1111;
+var DEVICE_VENDOR = 0x2354;
+var DEVICE_PRODUCT = 0x1111;
 
-const BYTE_LED = 'O'.charCodeAt(0);
-const BYTE_MOTOR = 'M'.charCodeAt(0);
-const BYTE_BUZZER = 'B'.charCodeAt(0);
-const BYTE_TEMPERATURE = 'T'.charCodeAt(0);
-const BYTE_LIGHT = 'L'.charCodeAt(0);
-const BYTE_ACCELEROMETER = 'A'.charCodeAt(0);
-const BYTE_OBSTACLE = 'I'.charCodeAt(0);
-const BYTE_STOP = 'X'.charCodeAt(0);
-const BYTE_RESET = 'R'.charCodeAt(0);
-const BYTE_CONNECT_TEST = 'z'.charCodeAt(0);
+var BYTE_LED = 'O'.charCodeAt(0);
+var BYTE_MOTOR = 'M'.charCodeAt(0);
+var BYTE_BUZZER = 'B'.charCodeAt(0);
+var BYTE_TEMPERATURE = 'T'.charCodeAt(0);
+var BYTE_LIGHT = 'L'.charCodeAt(0);
+var BYTE_ACCELEROMETER = 'A'.charCodeAt(0);
+var BYTE_OBSTACLE = 'I'.charCodeAt(0);
+var BYTE_STOP = 'X'.charCodeAt(0);
+var BYTE_RESET = 'R'.charCodeAt(0);
+var BYTE_CONNECT_TEST = 'z'.charCodeAt(0);
 
 /**
  * Finds a Finch connected to USB

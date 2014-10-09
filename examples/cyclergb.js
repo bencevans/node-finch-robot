@@ -1,19 +1,16 @@
 
 var finch = require('../')();
 
-function red() {
-  finch.led(255, 0, 0);
-  setTimeout(green, 1000);
-}
+var i = 1;
 
-function green() {
-  finch.led(0, 255, 0);
-  setTimeout(blue, 1000);
-}
+setInterval(function() {
 
-function blue() {
-  finch.led(0, 0, 255);
-  setTimeout(red, 1000);
-}
+  finch.led(i === 1 ? 255 : 0, i === 2 ? 255 : 0, i === 3 ? 255 : 0);
 
-red();
+  i++;
+  if(i === 4) {
+    i = 1;
+  }
+
+}, 1000);
+

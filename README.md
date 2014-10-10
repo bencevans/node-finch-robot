@@ -86,7 +86,8 @@ device.accelerometer(callback)
 
 * [GitHub Page](http://github.com/bencevans/node-finch)
 * [Finch USB Protocol](http://www.finchrobot.com/usb-protocol)
-* [Ruby Implementation](https://github.com/JARodrick/finch_ruby/blob/master/lib/connection.rb)
+* [Ruby Implementation](https://github.com/JARodrick/finch_ruby)
+* [Go Implementation](https://github.com/agnivade/GoFinch)
 
 ## Licence
 

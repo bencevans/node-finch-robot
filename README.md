@@ -14,7 +14,7 @@ Ubuntu Users: `sudo apt-get install -y libusb-1.0-0-dev`
 
 
 ```js
-var finch = require('finch');
+var finch = require('finch-robot');
 var device = finch();
 ```
 

@@ -1,4 +1,4 @@
-# node-finch
+# finch-robot
 
 ![](http://f.cl.ly/items/0708452q3i0C3t2n381T/f_sm.jpg)
 
@@ -8,7 +8,7 @@ A library for controlling [Finch Robots](http://www.finchrobot.com/) with Node.J
 
 ## Usage
 
-node-finch uses the [node-hid](https://github.com/node-hid/node-hid) library to communicate with the USB device. node-hid requires system level dependencies in order to control the USB device. On Linux you'll need `libudev-dev` or for Ubuntu versions missing libusb.h, you'll need `libusb-1.0-0-dev`. Now require the module and initialise an instance.
+node-finch-robot uses the [node-hid](https://github.com/node-hid/node-hid) library to communicate with the USB device. node-hid requires system level dependencies in order to control the USB device. On Linux you'll need `libudev-dev` or for Ubuntu versions missing libusb.h, you'll need `libusb-1.0-0-dev`. Now require the module and initialise an instance.
 
 Ubuntu Users: `sudo apt-get install -y libusb-1.0-0-dev`
 
@@ -84,7 +84,7 @@ device.accelerometer(callback)
 
 ## Development Resources
 
-* [GitHub Page](http://github.com/bencevans/node-finch)
+* [GitHub Page](http://github.com/bencevans/node-finch-robot)
 * [Finch USB Protocol](http://www.finchrobot.com/usb-protocol)
 * [Ruby Implementation](https://github.com/JARodrick/finch_ruby)
 * [Go Implementation](https://github.com/agnivade/GoFinch)

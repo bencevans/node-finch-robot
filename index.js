@@ -118,7 +118,7 @@ Finch.prototype.move = function(leftDirection, leftSpeed, rightDirection, rightS
   if((leftSpeed < 0 || leftSpeed > 255) || rightSpeed < 0 || rightSpeed > 255) {
     throw new Error('Invalid move args');
   }
-  return this.device._send([BYTE_MOTOR, leftDirection, leftSpeed, rightDirection, rightSpeed]);
+  return this._send([BYTE_MOTOR, leftDirection, leftSpeed, rightDirection, rightSpeed]);
 };
 
 /**

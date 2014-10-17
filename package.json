@@ -1,5 +1,5 @@
 {
-  "name": "finch",
+  "name": "finch-robot",
   "version": "0.0.0",
   "description": "Finch Robot Controller",
   "main": "index.js",

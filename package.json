@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/bencevans/node-sonos.git"
+    "url": "http://github.com/bencevans/node-finch-robot.git"
   },
   "keywords": [
     "finch",
@@ -34,7 +34,7 @@
   "author": "Ben Evans <ben@bensbit.co.uk> (http://bensbit.co.uk)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bencevans/node-sonos/issues"
+    "url": "https://github.com/bencevans/node-finch-robot/issues"
   },
-  "homepage": "https://github.com/bencevans/node-sonos"
+  "homepage": "https://github.com/bencevans/node-finch-robot"
 }

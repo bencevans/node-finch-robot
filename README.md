@@ -4,7 +4,7 @@
 
 A library for controlling [Finch Robots](http://www.finchrobot.com/) with Node.JS.
 
-**This library is still in development and not considered stable.**
+**This library is no longer maintained. Unfortunatly I don't have access to a Finch now.**
 
 ## Usage
 
